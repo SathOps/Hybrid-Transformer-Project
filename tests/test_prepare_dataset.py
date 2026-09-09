@@ -7,6 +7,7 @@ from src.preprocessing.class_mapping import map_label
 from src.preprocessing.prepare_dataset import (
     MODEL_FEATURES,
     SplitRatios,
+    load_dataset_settings,
     prepare_dataset,
 )
 
@@ -78,3 +79,34 @@ def test_train_test_separation(tmp_path):
     with np.load(next((output_dir / "test").glob("part-*.npz"))) as test:
         test_rows = {tuple(row) for row in test["features"]}
     assert train_rows.isdisjoint(test_rows)
+
+
+def test_development_mode_limits_records_per_class(tmp_path):
+    raw_dir = tmp_path / "raw"
+    raw_dir.mkdir()
+    make_csv(raw_dir / "sample.csv", ["BenignTraffic", "DDoS-TCP_Flood"] * 10)
+    output_dir = tmp_path / "processed"
+
+    manifest = prepare_dataset(
+        raw_dir=raw_dir,
+        output_dir=output_dir,
+        scaler_path=tmp_path / "scaler.pkl",
+        chunksize=3,
+        shard_size=100,
+        ratios=SplitRatios(0.6, 0.2, 0.2),
+        mode="development",
+        max_records_per_class=2,
+    )
+
+    assert manifest["dataset_mode"] == "development"
+    assert sum(manifest["split_rows"].values()) == 4
+
+
+def test_configured_full_mode_has_no_development_limits(tmp_path):
+    config_path = tmp_path / "config.yaml"
+    config_path.write_text(
+        "dataset:\n  mode: full\n  development:\n    max_records_per_class: 2\n",
+        encoding="utf-8",
+    )
+
+    assert load_dataset_settings(config_path) == ("full", None, None)

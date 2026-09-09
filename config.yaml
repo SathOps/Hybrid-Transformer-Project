@@ -11,6 +11,15 @@ paths:
   checkpoints: checkpoints
   experiments: experiments
 
+# Development mode is intentionally small for debugging. Change the mode line
+# to `mode: full` to process the complete dataset; development limits are
+# ignored in full mode.
+dataset:
+  mode: development
+  development:
+    max_records_per_class: 1000
+    max_records_per_file: null
+
 Dataset:
   name: CICIoT2023
   source: TBD
