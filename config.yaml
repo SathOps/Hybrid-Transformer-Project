@@ -35,9 +35,11 @@ preprocessing:
 
 model:
   type: CNN-Transformer
-  architecture: TBD
-  input_shape: TBD
-  num_classes: TBD
+  architecture: CNN -> reshape(8, 8) -> Transformer -> GlobalAveragePooling1D -> Dense(8) -> Softmax
+  input_shape: [46, 1]
+  num_classes: 8
+  transformer_input_shape: [8, 8]
+  aggregation: global_average
 
 training:
   batch_size: TBD
