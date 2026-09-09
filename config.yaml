@@ -15,7 +15,7 @@ paths:
 # to `mode: full` to process the complete dataset; development limits are
 # ignored in full mode.
 dataset:
-  mode: development
+  mode: full
   development:
     max_records_per_class: 100
     max_records_per_file: null

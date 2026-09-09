@@ -7,6 +7,7 @@ import json
 import logging
 import math
 import pickle
+import time
 from collections import Counter, defaultdict
 from dataclasses import dataclass
 from pathlib import Path
@@ -14,6 +15,7 @@ from typing import Iterator
 
 import numpy as np
 import pandas as pd
+import psutil
 import yaml
 from sklearn.preprocessing import MinMaxScaler
 
@@ -254,11 +256,15 @@ def count_valid_rows(
 ) -> tuple[Counter[str], InspectionStats]:
     class_counts: Counter[str] = Counter()
     stats = InspectionStats(files_processed=set())
+    last_logged = 0
     for _, _, labels, chunk_stats in iter_clean_chunks(
         csv_files, chunksize, max_records_per_class, max_records_per_file
     ):
         class_counts.update(labels.tolist())
         stats.merge(chunk_stats)
+        if stats.raw_rows - last_logged >= 1_000_000:
+            LOGGER.info("Pass 1 (counting): scanned %d rows...", stats.raw_rows)
+            last_logged = stats.raw_rows
     return class_counts, stats
 
 
@@ -279,12 +285,11 @@ def split_masks(
         start = class_seen[int(target_class)]
         total = class_counts[int(target_class)]
         if int(target_class) not in class_orders:
-            class_orders[int(target_class)] = np.random.default_rng(
-                seed + int(target_class)
-            ).permutation(total)
-        inverse_order = np.empty(total, dtype=np.int64)
-        inverse_order[class_orders[int(target_class)]] = np.arange(total)
-        class_positions = inverse_order[
+            p = np.random.default_rng(seed + int(target_class)).permutation(total)
+            inv = np.empty(total, dtype=np.int64)
+            inv[p] = np.arange(total)
+            class_orders[int(target_class)] = inv
+        class_positions = class_orders[int(target_class)][
             np.arange(start, start + len(positions))
         ]
         train_end = int(math.floor(total * ratios.train))
@@ -310,6 +315,8 @@ def fit_training_scaler(
     class_seen: defaultdict[str, int] = defaultdict(int)
     class_orders: dict[int, np.ndarray] = {}
     fitted = False
+    train_rows_seen = 0
+    last_logged = 0
     for _, features, labels, _ in iter_clean_chunks(
         csv_files, chunksize, max_records_per_class, max_records_per_file
     ):
@@ -318,6 +325,10 @@ def fit_training_scaler(
         if len(training_features):
             scaler.partial_fit(training_features)
             fitted = True
+            train_rows_seen += len(training_features)
+            if train_rows_seen - last_logged >= 1_000_000:
+                LOGGER.info("Pass 2 (scaler fit): fitted %d training rows...", train_rows_seen)
+                last_logged = train_rows_seen
     if not fitted:
         raise ValueError("No valid training rows were available for scaler fitting")
     return scaler
@@ -433,6 +444,7 @@ def prepare_dataset(
         max_records_per_file = None
     elif max_records_per_class is None and max_records_per_file is None:
         max_records_per_class = 1000
+    start_time = time.time()
     csv_files = discover_csv_files(raw_dir)
     LOGGER.info("Dataset mode: %s", mode)
     LOGGER.info("Files discovered: %d", len(csv_files))
@@ -461,6 +473,12 @@ def prepare_dataset(
     with scaler_path.open("wb") as file_handle:
         pickle.dump(scaler, file_handle)
 
+    for name in SPLIT_NAMES:
+        split_dir = output_dir / name
+        if split_dir.exists():
+            for old_shard in split_dir.glob("part-*.npz"):
+                old_shard.unlink()
+
     writers = {
         name: ShardWriter(output_dir / name, shard_size) for name in SPLIT_NAMES
     }
@@ -469,6 +487,8 @@ def prepare_dataset(
     split_class_distribution: dict[str, Counter[int]] = {
         name: Counter() for name in SPLIT_NAMES
     }
+    total_processed_pass3 = 0
+    last_logged_pass3 = 0
     for _, features, labels, _ in iter_clean_chunks(
         csv_files,
         chunksize,
@@ -482,10 +502,16 @@ def prepare_dataset(
                 writers[split_name].add(
                     scaler.transform(features[mask]).astype(np.float32), labels[mask]
                 )
+        total_processed_pass3 += len(labels)
+        if total_processed_pass3 - last_logged_pass3 >= 1_000_000:
+            LOGGER.info("Pass 3 (writing shards): processed %d rows...", total_processed_pass3)
+            last_logged_pass3 = total_processed_pass3
     for writer in writers.values():
         writer.flush()
 
     split_rows = {name: writer.rows_written for name, writer in writers.items()}
+    elapsed_seconds = round(time.time() - start_time, 2)
+    peak_ram = round(psutil.Process().memory_info().rss / (1024 * 1024), 2)
     manifest = {
         "features": list(MODEL_FEATURES),
         "feature_count": len(MODEL_FEATURES),
@@ -514,6 +540,8 @@ def prepare_dataset(
         "development_limit_rows_dropped": stats.limited_rows,
         "rows_processed": stats.raw_rows,
         "rows_discarded": stats.unresolved_rows + stats.invalid_rows + stats.limited_rows,
+        "processing_duration_seconds": elapsed_seconds,
+        "peak_ram_mb": peak_ram,
         "normalization": {
             "method": "MinMaxScaler",
             "fit_split": "train",
@@ -533,6 +561,8 @@ def prepare_dataset(
     LOGGER.info("Validation count: %d", split_rows["validation"])
     LOGGER.info("Test count: %d", split_rows["test"])
     LOGGER.info("Normalization: MinMaxScaler fitted only on train rows")
+    LOGGER.info("Processing duration: %.2f seconds", elapsed_seconds)
+    LOGGER.info("Peak RAM usage: %.2f MB", peak_ram)
     LOGGER.info("Output locations: %s; scaler: %s", output_dir, scaler_path)
     return manifest
 
