@@ -1,0 +1,42 @@
+# Phase-one configuration scaffold.
+# Dataset, architecture, and training values remain provisional until specified.
+
+project:
+  name: CICIoT2023 CNN-Transformer Cyber Attack Detection
+  random_seed: 42
+
+paths:
+  raw_data: data/raw
+  processed_data: data/processed
+  checkpoints: checkpoints
+  experiments: experiments
+
+Dataset:
+  name: CICIoT2023
+  source: TBD
+  label_column: TBD
+  task: TBD
+
+preprocessing:
+  input_features: TBD
+  missing_value_strategy: TBD
+  scaling: TBD
+  categorical_encoding: TBD
+  split_strategy: TBD
+
+model:
+  type: CNN-Transformer
+  architecture: TBD
+  input_shape: TBD
+  num_classes: TBD
+
+training:
+  batch_size: TBD
+  epochs: TBD
+  learning_rate: TBD
+  optimizer: TBD
+  loss: TBD
+
+evaluation:
+  metrics: TBD
+  reporting_protocol: TBD

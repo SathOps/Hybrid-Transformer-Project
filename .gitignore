@@ -55,3 +55,13 @@ wandb/
 # Environment variables & secrets
 .env
 .env.local
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Local experiment outputs
+*.log
+*.csv
+*.parquet
+*.json

@@ -1,0 +1,16 @@
+# Core scientific Python stack
+numpy
+pandas
+scikit-learn
+scipy
+
+# Configuration and visualization
+PyYAML
+matplotlib
+seaborn
+
+# Deep learning and research notebooks
+torch
+torchvision
+jupyter
+ipykernel
