@@ -1,16 +1,9 @@
-# Core scientific Python stack
+tensorflow
 numpy
 pandas
 scikit-learn
-scipy
-
-# Configuration and visualization
-PyYAML
 matplotlib
 seaborn
-
-# Deep learning and research notebooks
-torch
-torchvision
+xgboost
+PyYAML
 jupyter
-ipykernel
