@@ -42,6 +42,7 @@ ENV/
 checkpoints/
 weights/
 data/
+data/raw/
 datasets/
 logs/
 wandb/
