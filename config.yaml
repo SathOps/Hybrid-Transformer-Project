@@ -17,7 +17,7 @@ paths:
 dataset:
   mode: development
   development:
-    max_records_per_class: 1000
+    max_records_per_class: 100
     max_records_per_file: null
 
 Dataset:
@@ -27,11 +27,16 @@ Dataset:
   task: TBD
 
 preprocessing:
-  input_features: TBD
-  missing_value_strategy: TBD
-  scaling: TBD
-  categorical_encoding: TBD
-  split_strategy: TBD
+  input_features: 46
+  missing_value_strategy: drop_invalid_rows
+  scaling: MinMaxScaler
+  categorical_encoding: none
+  split_strategy: stratified_deterministic
+  random_seed: 42
+  split_ratios:
+    train: 0.70
+    validation: 0.15
+    test: 0.15
 
 model:
   type: CNN-Transformer

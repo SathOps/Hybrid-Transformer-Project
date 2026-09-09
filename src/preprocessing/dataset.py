@@ -4,8 +4,15 @@ from __future__ import annotations
 
 from pathlib import Path
 from typing import Iterator
+import json
 
 import numpy as np
+
+
+def load_class_names(root_dir: Path) -> tuple[str, ...]:
+    """Load the target class ordering saved beside processed shards."""
+    class_names_path = root_dir / "class_names.json"
+    return tuple(json.loads(class_names_path.read_text(encoding="utf-8")))
 
 
 def iter_batches(
@@ -42,3 +49,46 @@ class PreparedDataset:
         self, batch_size: int, shuffle: bool = False, seed: int = 42
     ) -> Iterator[tuple[np.ndarray, np.ndarray]]:
         return iter_batches(self.split_dir, batch_size, shuffle, seed)
+
+    def to_tf_dataset(
+        self,
+        batch_size: int = 1024,
+        shuffle: bool = False,
+        seed: int = 42,
+        expand_dims: bool = True,
+    ):
+        """Create a tf.data.Dataset for this partition."""
+        return to_tf_dataset(
+            self.split_dir,
+            batch_size=batch_size,
+            shuffle=shuffle,
+            seed=seed,
+            expand_dims=expand_dims,
+        )
+
+
+def to_tf_dataset(
+    split_dir: Path,
+    batch_size: int = 1024,
+    shuffle: bool = False,
+    seed: int = 42,
+    expand_dims: bool = True,
+):
+    """Create a tf.data.Dataset from processed shards for TensorFlow training."""
+    import tensorflow as tf
+
+    def generator():
+        for features, labels in iter_batches(
+            split_dir, batch_size=batch_size, shuffle=shuffle, seed=seed
+        ):
+            if expand_dims:
+                yield np.expand_dims(features, axis=-1), labels
+            else:
+                yield features, labels
+
+    feature_shape = (None, 46, 1) if expand_dims else (None, 46)
+    output_signature = (
+        tf.TensorSpec(shape=feature_shape, dtype=tf.float32),
+        tf.TensorSpec(shape=(None,), dtype=tf.int64),
+    )
+    return tf.data.Dataset.from_generator(generator, output_signature=output_signature)
