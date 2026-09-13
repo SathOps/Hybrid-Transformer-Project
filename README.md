@@ -18,7 +18,7 @@ Key characteristics of the final system:
 
 ## 2. System Architecture
 
-The overall pipeline follows a 10-stage optimization workflow designed to guarantee zero data leakage between training, validation, and testing phases.
+The overall pipeline follows a multi-stage optimization workflow designed to guarantee zero data leakage between training, validation, and testing phases.
 
 ```mermaid
 graph TD
@@ -75,11 +75,11 @@ To handle high-volume network flow data efficiently without memory overflow:
 
 ## 5. BPSO Feature Selection
 
-Binary Particle Swarm Optimization (BPSO) was applied to eliminate redundant network flow features while retaining maximum discriminative capacity.
+Binary Particle Swarm Optimization (BPSO) was applied to eliminate redundant network flow features while retaining predictive capacity.
 
 ### Optimization Setup
 - **Swarm Configuration**: 20 particles, 20 iterations (400 total state evaluations).
-- **Objective Function**: Validation Macro F1 score on a training evaluation subset (`seed=42`).
+- **Objective Function**: Macro F1 evaluated using fixed 200,000-sample training and 200,000-sample validation subsets (`seed=42`), with validation performance used for fitness evaluation.
 - **Reduction Result**: Reduced feature dimension from **46 to 27 features** (**41.3% reduction**).
 
 ### Exact 27 BPSO-Selected Feature Subset
@@ -118,7 +118,7 @@ The selected feature indices `[1, 2, 3, 4, 6, 8, 9, 10, 15, 18, 20, 21, 22, 24, 
 
 ## 6. Model Development & Hyperparameter Tuning
 
-Ten systematic experiment stages were evaluated to analyze architecture behaviors and justify the hybrid model design.
+Systematic experiment stages were evaluated to analyze architecture behaviors and justify the hybrid model design.
 
 ### Base Model Hyperparameter Tuning
 Hyperparameter optimization was conducted on a fixed 200,000 train / 200,000 validation subset (`seed=42`) using Validation Macro F1 as the objective:
@@ -136,8 +136,6 @@ Hyperparameter optimization was conducted on a fixed 200,000 train / 200,000 val
 - **Optimized CNN-Transformer**:
   - `learning_rate`: 0.0001
   - `batch_size`: 1024
-  - `conv_filters`: 64, `kernel_size`: 3
-  - `transformer_blocks`: 2, `num_heads`: 4, `ff_dim`: 128
 
 ---
 
@@ -178,25 +176,27 @@ All 10 evaluated systems were tested on the untouched natural CICIoT2023 test se
 | Phase | System Variant | Features | Test Acc | Macro F1 | Weighted F1 | Contribution |
 | :--- | :--- | :---: | :---: | :---: | :---: | :--- |
 | **Phase A** | Original XGBoost Baseline | 46 | 74.91% | 0.7032 | 0.7746 | Initial 46-feature benchmark |
-| **Phase B** | XGBoost + BPSO Feature Selection | 27 | 74.56% | 0.6960 | 0.7716 | **41.3% Feature Reduction** with negligible metric change |
+| **Phase B** | XGBoost + BPSO Feature Selection | 27 | 74.56% | 0.6960 | 0.7716 | **41.3% Feature Reduction** |
 | **Phase C** | Optimized XGBoost + BPSO | 27 | 75.99% | 0.7175 | 0.7841 | Hyperparameter Tuning (+1.43% accuracy) |
 | **Phase D** | Optimized MLP + BPSO | 27 | 74.04% | 0.6592 | 0.7666 | Complementary neural feature representation |
-| **Phase E** | **FINAL OPTIMIZED HYBRID IDS** | **27** | **77.83%** | **0.7184** | **0.7985** | **Highest Test Accuracy (+1.84%) and Weighted F1 (+0.0144)** |
+| **Phase E** | **FINAL OPTIMIZED HYBRID IDS** | **27** | **77.83%** | **0.7184** | **0.7985** | **Highest Test Accuracy (77.83%), Macro F1 (0.7184), and Weighted F1 (0.7985)** |
+
+The ablation study demonstrates the incremental contribution of feature selection, model hyperparameter tuning, and validation-driven adaptive ensemble fusion.
 
 ---
 
 ## 10. Key Research Findings
 
-1. **Tabular Feature Performance**: Tree-based gradient boosting (XGBoost) demonstrated exceptional performance on tabular network flow statistics, receiving the highest ensemble weight ($0.68$).
-2. **Feature Space Efficiency**: BPSO successfully eliminated 19 redundant features (41.3% reduction) without compromising classification capability.
-3. **Adaptive Fusion Gain**: Combining tuned base models via validation-optimized probability weights yielded the **highest Test Accuracy (77.83%)** and **Weighted F1 (0.7985)** across all models.
-4. **Latency Trade-Off**: Standalone XGBoost offers ultra-low inference latency ($0.0003 \text{ ms/sample}$), whereas the hybrid ensemble incurs $0.0506 \text{ ms/sample}$ due to CNN-Transformer neural evaluation.
+1. **Tabular Feature Performance**: Tree-based gradient boosting (XGBoost) demonstrated strong performance on tabular network flow statistics, receiving the largest ensemble weight ($0.68$), while CNN-Transformer contributed $0.30$ and MLP $0.02$.
+2. **Feature Space Efficiency**: BPSO reduced the feature space from 46 to 27 features (41.3% reduction) while retaining broadly comparable predictive performance, although a small decrease in XGBoost baseline performance was observed before subsequent hyperparameter optimization.
+3. **Adaptive Fusion Gain**: Combining tuned base models via validation-optimized probability weights yielded the highest evaluated Test Accuracy (**77.83%**), Macro F1 (**0.7184**), and Weighted F1 (**0.7985**).
+4. **Latency Trade-Off**: Standalone XGBoost offers ultra-low inference latency ($0.0003 \text{ ms/sample}$), whereas the hybrid ensemble incurs $0.0506 \text{ ms/sample}$ due to neural evaluation. Deployment choices depend on whether detection accuracy or ultra-low latency is prioritized.
 
 ---
 
 ## 11. Research Integrity & Methodological Rigor
 
-- **Strict Data Isolation**: Feature selection, hyperparameter tuning, and ensemble weight searches were conducted exclusively on training and validation partitions. The test set was evaluated **exactly once**.
+- **Strict Data Isolation**: Feature selection, hyperparameter tuning, and ensemble weight searches were conducted exclusively on training and validation partitions. The natural test set remained untouched until final single-pass evaluation.
 - **No Fabricated Data**: Missing categories (such as Recon) were documented transparently rather than artificially synthesized.
 - **Artifact Preservation**: All prior experiment metrics, logs, and evaluation reports were preserved without retroactive modification.
 
@@ -207,15 +207,16 @@ All 10 evaluated systems were tested on the untouched natural CICIoT2023 test se
 - **Recon Absence**: The downloaded dataset release lacked valid Recon samples.
 - **Class Imbalance**: Severe imbalance remains between high-frequency DDoS/DoS categories and low-frequency categories like BruteForce and Web-based.
 - **Ensemble Latency**: Neural network evaluation inside the ensemble increases latency compared to tree-only inference.
-- **Dataset Specificity**: Results reflect CICIoT2023 network flow statistics and should be validated before deployment in non-IoT networks.
+- **Dataset Specificity**: Results reflect CICIoT2023 network flow statistics and should not automatically be generalized to every IoT traffic environment.
+- **Incremental Improvement**: The final hybrid's improvement over optimized XGBoost is meaningful in accuracy (+1.84%) but relatively small in Macro F1 (+0.0009).
 
 ---
 
 ## 13. Deployment Recommendations
 
 Depending on operational constraints:
-- **Maximum Detection Performance**: Deploy the **FINAL OPTIMIZED HYBRID IDS** for highest classification accuracy ($77.83\%$) and overall F1-score ($0.7985$).
-- **Ultra-Low Latency / Resource-Constrained Edge**: Deploy **Optimized XGBoost + BPSO (27 Features)** for real-time edge processing ($0.0003 \text{ ms/sample}$ latency and 41.3% lower feature collection overhead).
+- **Maximum Detection Performance**: Deploy the **FINAL OPTIMIZED HYBRID IDS** for highest classification Test Accuracy (**77.83%**), Macro F1 (**0.7184**), and Weighted F1 (**0.7985**).
+- **Ultra-Low Latency / Resource-Constrained Edge**: Deploy **Optimized XGBoost + BPSO (27 Features)** for real-time edge processing ($0.0003 \text{ ms/sample}$ latency with **41.3% fewer model input features**).
 
 ---
 
