@@ -33,12 +33,17 @@ ENV/
 # Jupyter Notebook checkpoints
 .ipynb_checkpoints
 
-# PyTorch / ML Checkpoints & Data
+# PyTorch / Keras / ML Checkpoints & Large Data
 *.pt
 *.pth
 *.bin
 *.onnx
 *.safetensors
+*.keras
+*.h5
+*.npz
+*.pkl
+*.joblib
 checkpoints/
 weights/
 data/
@@ -61,8 +66,11 @@ wandb/
 .DS_Store
 Thumbs.db
 
-# Local experiment outputs
+# Local experiment logs and temporary binary files
 *.log
-*.csv
 *.parquet
-*.json
+
+# Large generated predictions & probability arrays
+**/test_predictions.csv
+**/validation_predictions.csv
+**/validation_probabilities.npz

@@ -1,0 +1,105 @@
+{
+  "val_macro_f1": 0.720174612497033,
+  "weights": {
+    "w_cnn": 0.3,
+    "w_xgb": 0.68,
+    "w_mlp": 0.02
+  },
+  "validation_metrics": {
+    "accuracy": 0.7780578482876912,
+    "macro_precision": 0.8596335130084417,
+    "macro_recall": 0.6998149625828972,
+    "macro_f1": 0.720174612497033,
+    "weighted_f1": 0.7982238868014245
+  },
+  "setups_evaluated": [
+    {
+      "setup_name": "CNN Only",
+      "w_cnn": 1.0,
+      "w_xgb": 0.0,
+      "w_mlp": 0.0,
+      "val_macro_f1": 0.162593,
+      "val_accuracy": 0.618824,
+      "val_weighted_f1": 0.595263,
+      "val_macro_precision": 0.155883,
+      "val_macro_recall": 0.169939
+    },
+    {
+      "setup_name": "XGBoost Only",
+      "w_cnn": 0.0,
+      "w_xgb": 1.0,
+      "w_mlp": 0.0,
+      "val_macro_f1": 0.717447,
+      "val_accuracy": 0.759818,
+      "val_weighted_f1": 0.783994,
+      "val_macro_precision": 0.851131,
+      "val_macro_recall": 0.707478
+    },
+    {
+      "setup_name": "MLP Only",
+      "w_cnn": 0.0,
+      "w_xgb": 0.0,
+      "w_mlp": 1.0,
+      "val_macro_f1": 0.663352,
+      "val_accuracy": 0.740199,
+      "val_weighted_f1": 0.766394,
+      "val_macro_precision": 0.820514,
+      "val_macro_recall": 0.664965
+    },
+    {
+      "setup_name": "CNN + XGBoost",
+      "w_cnn": 0.5,
+      "w_xgb": 0.5,
+      "w_mlp": 0.0,
+      "val_macro_f1": 0.654358,
+      "val_accuracy": 0.780278,
+      "val_weighted_f1": 0.773356,
+      "val_macro_precision": 0.859989,
+      "val_macro_recall": 0.606526
+    },
+    {
+      "setup_name": "CNN + MLP",
+      "w_cnn": 0.5,
+      "w_xgb": 0.0,
+      "w_mlp": 0.5,
+      "val_macro_f1": 0.593427,
+      "val_accuracy": 0.77778,
+      "val_weighted_f1": 0.770304,
+      "val_macro_precision": 0.698959,
+      "val_macro_recall": 0.56624
+    },
+    {
+      "setup_name": "XGBoost + MLP",
+      "w_cnn": 0.0,
+      "w_xgb": 0.5,
+      "w_mlp": 0.5,
+      "val_macro_f1": 0.704014,
+      "val_accuracy": 0.751858,
+      "val_weighted_f1": 0.776966,
+      "val_macro_precision": 0.859873,
+      "val_macro_recall": 0.697312
+    },
+    {
+      "setup_name": "Equal Weights (1/3, 1/3, 1/3)",
+      "w_cnn": 0.3333,
+      "w_xgb": 0.3333,
+      "w_mlp": 0.3333,
+      "val_macro_f1": 0.701863,
+      "val_accuracy": 0.78703,
+      "val_weighted_f1": 0.802872,
+      "val_macro_precision": 0.870017,
+      "val_macro_recall": 0.6771
+    },
+    {
+      "setup_name": "Optimal Adaptive Ensemble",
+      "w_cnn": 0.3,
+      "w_xgb": 0.68,
+      "w_mlp": 0.02,
+      "val_macro_f1": 0.720175,
+      "val_accuracy": 0.778058,
+      "val_weighted_f1": 0.798224,
+      "val_macro_precision": 0.859634,
+      "val_macro_recall": 0.699815
+    }
+  ]
+}

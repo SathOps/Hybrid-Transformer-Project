@@ -1,0 +1,11 @@
+class_name,precision,recall,f1_score,support
+Benign,1.0,1.0,1.0,375
+BruteForce,1.0,1.0,1.0,375
+DDoS,1.0,1.0,1.0,375
+DoS,1.0,1.0,1.0,375
+Mirai,1.0,1.0,1.0,375
+Recon,1.0,1.0,1.0,375
+Spoofing,1.0,1.0,1.0,375
+Web-based,1.0,1.0,1.0,375
+macro avg,1.0,1.0,1.0,3000
+weighted avg,1.0,1.0,1.0,3000

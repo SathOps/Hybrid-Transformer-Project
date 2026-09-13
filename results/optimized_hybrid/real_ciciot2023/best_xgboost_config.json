@@ -1,0 +1,12 @@
+{
+  "best_val_macro_f1": 0.679224027395434,
+  "hyperparameters": {
+    "n_estimators": 120,
+    "max_depth": 6,
+    "learning_rate": 0.1,
+    "subsample": 0.8,
+    "colsample_bytree": 0.8,
+    "reg_alpha": 0.0,
+    "reg_lambda": 1.0
+  }
+}

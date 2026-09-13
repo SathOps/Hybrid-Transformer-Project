@@ -40,9 +40,9 @@ preprocessing:
 
 model:
   type: CNN-Transformer
-  architecture: CNN -> reshape(8, 8) -> Transformer -> GlobalAveragePooling1D -> Dense(8) -> Softmax
+  architecture: CNN -> reshape(8, 8) -> Transformer -> GlobalAveragePooling1D -> Dense(7) -> Softmax
   input_shape: [46, 1]
-  num_classes: 8
+  num_classes: 7
   transformer_input_shape: [8, 8]
   aggregation: global_average
 

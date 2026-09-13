@@ -20,7 +20,7 @@ def test_model_shapes_and_component_contracts():
     assert tuple(bridge.output.shape) == (None, 8, 8)
     assert transformer.input_shape == (None, 8, 8)
     assert transformer.output_shape == (None, 8, 8)
-    assert model.output_shape == (None, 8)
+    assert model.output_shape == (None, 7)
 
 
 def test_softmax_probabilities_sum_to_one():
@@ -34,7 +34,7 @@ def test_random_forward_pass_is_finite_and_batch_dynamic():
     model = build_model()
     output = model(tf.random.normal((5, 46, 1), seed=7), training=False).numpy()
 
-    assert output.shape == (5, 8)
+    assert output.shape == (5, 7)
     assert np.isfinite(output).all()
 
 

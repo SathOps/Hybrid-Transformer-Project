@@ -1,0 +1,189 @@
+{
+  "timestamp": "2026-09-11T13:59:15.953255",
+  "model_name": "XGBoost-Baseline",
+  "xgboost_version": "3.2.0",
+  "hyperparameters": {
+    "n_estimators": 100,
+    "learning_rate": 0.05,
+    "max_depth": 6,
+    "subsample": 0.8,
+    "colsample_bytree": 0.8,
+    "objective": "multi:softprob",
+    "eval_metric": "mlogloss",
+    "early_stopping_rounds": 10,
+    "random_seed": 42
+  },
+  "dataset_note": "The paper reports approximately 46.18M records, whereas our available local dataset contains 9,022,524 raw rows and 9,014,734 retained rows.",
+  "data_summary": {
+    "num_features": 46,
+    "num_classes": 8,
+    "train_samples": 14000,
+    "validation_samples": 3000
+  },
+  "training_results": {
+    "best_iteration": 99,
+    "validation_accuracy": 1.0,
+    "validation_log_loss": 0.01633162796497345,
+    "training_duration_seconds": 0.93,
+    "peak_ram_mb": 268.43
+  },
+  "paths": {
+    "checkpoint_model_json": "C:\\Users\\user\\OneDrive\\\u30c9\u30ad\u30e5\u30e1\u30f3\u30c8\\gitam\\vscode proj\\cyberattack detection\\checkpoints\\xgboost\\baseline\\model.json",
+    "checkpoint_metadata_json": "C:\\Users\\user\\OneDrive\\\u30c9\u30ad\u30e5\u30e1\u30f3\u30c8\\gitam\\vscode proj\\cyberattack detection\\checkpoints\\xgboost\\baseline\\metadata.json",
+    "results_dir": "C:\\Users\\user\\OneDrive\\\u30c9\u30ad\u30e5\u30e1\u30f3\u30c8\\gitam\\vscode proj\\cyberattack detection\\experiments\\results\\xgboost\\baseline"
+  },
+  "system_info": {
+    "ram_rss_mb": 268.43,
+    "cpu_count": 32
+  },
+  "dataset_manifest": {
+    "features": [
+      "flow_duration",
+      "Header_Length",
+      "Protocol Type",
+      "Duration",
+      "Rate",
+      "Srate",
+      "Drate",
+      "fin_flag_number",
+      "syn_flag_number",
+      "rst_flag_number",
+      "psh_flag_number",
+      "ack_flag_number",
+      "ece_flag_number",
+      "cwr_flag_number",
+      "ack_count",
+      "syn_count",
+      "fin_count",
+      "urg_count",
+      "rst_count",
+      "HTTP",
+      "HTTPS",
+      "DNS",
+      "Telnet",
+      "SMTP",
+      "SSH",
+      "IRC",
+      "TCP",
+      "UDP",
+      "DHCP",
+      "ARP",
+      "ICMP",
+      "IPv",
+      "LLC",
+      "Tot sum",
+      "Min",
+      "Max",
+      "AVG",
+      "Std",
+      "Tot size",
+      "IAT",
+      "Number",
+      "Magnitue",
+      "Radius",
+      "Covariance",
+      "Variance",
+      "Weight"
+    ],
+    "feature_count": 46,
+    "target_classes": [
+      "Benign",
+      "BruteForce",
+      "DDoS",
+      "DoS",
+      "Mirai",
+      "Recon",
+      "Spoofing",
+      "Web-based"
+    ],
+    "class_to_id": {
+      "Benign": 0,
+      "BruteForce": 1,
+      "DDoS": 2,
+      "DoS": 3,
+      "Mirai": 4,
+      "Recon": 5,
+      "Spoofing": 6,
+      "Web-based": 7
+    },
+    "class_distribution": {
+      "0": 2500,
+      "1": 2500,
+      "2": 2500,
+      "3": 2500,
+      "4": 2500,
+      "5": 2500,
+      "6": 2500,
+      "7": 2500
+    },
+    "split_class_distribution": {
+      "train": {
+        "0": 1750,
+        "1": 1750,
+        "2": 1750,
+        "3": 1750,
+        "4": 1750,
+        "5": 1750,
+        "6": 1750,
+        "7": 1750
+      },
+      "validation": {
+        "0": 375,
+        "1": 375,
+        "2": 375,
+        "3": 375,
+        "4": 375,
+        "5": 375,
+        "6": 375,
+        "7": 375
+      },
+      "test": {
+        "0": 375,
+        "1": 375,
+        "2": 375,
+        "3": 375,
+        "4": 375,
+        "5": 375,
+        "6": 375,
+        "7": 375
+      }
+    },
+    "split_ratios": {
+      "train": 0.7,
+      "validation": 0.15,
+      "test": 0.15
+    },
+    "random_seed": 42,
+    "dataset_mode": "full",
+    "max_records_per_class": null,
+    "max_records_per_file": null,
+    "split_rows": {
+      "train": 14000,
+      "validation": 3000,
+      "test": 3000
+    },
+    "scaler_path": "checkpoints\\minmax_scaler.pkl",
+    "unresolved_rows_quarantined": 0,
+    "invalid_rows_dropped": 0,
+    "development_limit_rows_dropped": 0,
+    "rows_processed": 20000,
+    "rows_discarded": 0,
+    "processing_duration_seconds": 0.55,
+    "peak_ram_mb": 142.67,
+    "normalization": {
+      "method": "MinMaxScaler",
+      "fit_split": "train",
+      "scaler_path": "checkpoints\\minmax_scaler.pkl"
+    },
+    "source_files": [
+      "data\\raw\\sample_benign.csv",
+      "data\\raw\\sample_bruteforce.csv",
+      "data\\raw\\sample_ddos.csv",
+      "data\\raw\\sample_dos.csv",
+      "data\\raw\\sample_mirai.csv",
+      "data\\raw\\sample_recon.csv",
+      "data\\raw\\sample_spoofing.csv",
+      "data\\raw\\sample_web-based.csv"
+    ]
+  }
+}

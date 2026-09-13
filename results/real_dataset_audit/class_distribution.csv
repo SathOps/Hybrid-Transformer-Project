@@ -1,0 +1,26 @@
+Subclass,Canonical Class,Raw Flow Rows,Percentage of Total Dataset
+Benign_Final,Benign,1098191,2.9346
+BrowserHijacking,Web-based,5859,0.0157
+CommandInjection,Web-based,5409,0.0145
+DDoS-ACK_Fragmentation,DDoS,285075,0.7618
+DDoS-HTTP_Flood,DDoS,28790,0.0769
+DDoS-ICMP_Flood,DDoS,6932996,18.5262
+DDoS-ICMP_Fragmentation,DDoS,452490,1.2091
+DDoS-PSHACK_FLOOD,DDoS,3023182,8.0785
+DDoS-RSTFINFLOOD,DDoS,2910296,7.7768
+DDoS-SYN_Flood,DDoS,3335216,8.9123
+DDoS-SlowLoris,DDoS,23426,0.0626
+DDoS-SynonymousIP_Flood,DDoS,2260651,6.0409
+DDoS-TCP_Flood,DDoS,3385730,9.0473
+DDoS-UDP_Flood,DDoS,4613951,12.3293
+DDoS-UDP_Fragmentation,DDoS,264256,0.7061
+DNS_Spoofing,Spoofing,178898,0.478
+DictionaryBruteForce,BruteForce,13064,0.0349
+DoS-HTTP_Flood,DoS,71861,0.192
+DoS-SYN_Flood,DoS,1513887,4.0454
+DoS-TCP_Flood,DoS,1911803,5.1087
+DoS-UDP_Flood,DoS,3072990,8.2116
+MITM-ArpSpoofing,Spoofing,307560,0.8219
+Mirai-greeth_flood,Mirai,991834,2.6504
+Mirai-greip_flood,Mirai,681909,1.8222
+Mirai-udpplain,Mirai,53307,0.1424

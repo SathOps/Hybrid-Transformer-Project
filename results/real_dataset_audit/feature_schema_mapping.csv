@@ -1,0 +1,47 @@
+Current Feature,Real CICIoT2023 Column,Transformation Required,Available?,Notes
+flow_duration,flow_duration,MinMaxScaler normalization on train split,Yes,Direct 1-to-1 match with official CICIoT2023 CSV feature column.
+Header_Length,Header_Length,MinMaxScaler normalization on train split,Yes,Direct 1-to-1 match with official CICIoT2023 CSV feature column.
+Protocol Type,Protocol Type,MinMaxScaler normalization on train split,Yes,Direct 1-to-1 match with official CICIoT2023 CSV feature column.
+Duration,Duration,MinMaxScaler normalization on train split,Yes,Direct 1-to-1 match with official CICIoT2023 CSV feature column.
+Rate,Rate,MinMaxScaler normalization on train split,Yes,Direct 1-to-1 match with official CICIoT2023 CSV feature column.
+Srate,Srate,MinMaxScaler normalization on train split,Yes,Direct 1-to-1 match with official CICIoT2023 CSV feature column.
+Drate,Drate,MinMaxScaler normalization on train split,Yes,Direct 1-to-1 match with official CICIoT2023 CSV feature column.
+fin_flag_number,fin_flag_number,MinMaxScaler normalization on train split,Yes,Direct 1-to-1 match with official CICIoT2023 CSV feature column.
+syn_flag_number,syn_flag_number,MinMaxScaler normalization on train split,Yes,Direct 1-to-1 match with official CICIoT2023 CSV feature column.
+rst_flag_number,rst_flag_number,MinMaxScaler normalization on train split,Yes,Direct 1-to-1 match with official CICIoT2023 CSV feature column.
+psh_flag_number,psh_flag_number,MinMaxScaler normalization on train split,Yes,Direct 1-to-1 match with official CICIoT2023 CSV feature column.
+ack_flag_number,ack_flag_number,MinMaxScaler normalization on train split,Yes,Direct 1-to-1 match with official CICIoT2023 CSV feature column.
+ece_flag_number,ece_flag_number,MinMaxScaler normalization on train split,Yes,Direct 1-to-1 match with official CICIoT2023 CSV feature column.
+cwr_flag_number,cwr_flag_number,MinMaxScaler normalization on train split,Yes,Direct 1-to-1 match with official CICIoT2023 CSV feature column.
+ack_count,ack_count,MinMaxScaler normalization on train split,Yes,Direct 1-to-1 match with official CICIoT2023 CSV feature column.
+syn_count,syn_count,MinMaxScaler normalization on train split,Yes,Direct 1-to-1 match with official CICIoT2023 CSV feature column.
+fin_count,fin_count,MinMaxScaler normalization on train split,Yes,Direct 1-to-1 match with official CICIoT2023 CSV feature column.
+urg_count,urg_count,MinMaxScaler normalization on train split,Yes,Direct 1-to-1 match with official CICIoT2023 CSV feature column.
+rst_count,rst_count,MinMaxScaler normalization on train split,Yes,Direct 1-to-1 match with official CICIoT2023 CSV feature column.
+HTTP,HTTP,MinMaxScaler normalization on train split,Yes,Direct 1-to-1 match with official CICIoT2023 CSV feature column.
+HTTPS,HTTPS,MinMaxScaler normalization on train split,Yes,Direct 1-to-1 match with official CICIoT2023 CSV feature column.
+DNS,DNS,MinMaxScaler normalization on train split,Yes,Direct 1-to-1 match with official CICIoT2023 CSV feature column.
+Telnet,Telnet,MinMaxScaler normalization on train split,Yes,Direct 1-to-1 match with official CICIoT2023 CSV feature column.
+SMTP,SMTP,MinMaxScaler normalization on train split,Yes,Direct 1-to-1 match with official CICIoT2023 CSV feature column.
+SSH,SSH,MinMaxScaler normalization on train split,Yes,Direct 1-to-1 match with official CICIoT2023 CSV feature column.
+IRC,IRC,MinMaxScaler normalization on train split,Yes,Direct 1-to-1 match with official CICIoT2023 CSV feature column.
+TCP,TCP,MinMaxScaler normalization on train split,Yes,Direct 1-to-1 match with official CICIoT2023 CSV feature column.
+UDP,UDP,MinMaxScaler normalization on train split,Yes,Direct 1-to-1 match with official CICIoT2023 CSV feature column.
+DHCP,DHCP,MinMaxScaler normalization on train split,Yes,Direct 1-to-1 match with official CICIoT2023 CSV feature column.
+ARP,ARP,MinMaxScaler normalization on train split,Yes,Direct 1-to-1 match with official CICIoT2023 CSV feature column.
+ICMP,ICMP,MinMaxScaler normalization on train split,Yes,Direct 1-to-1 match with official CICIoT2023 CSV feature column.
+IPv,IPv,MinMaxScaler normalization on train split,Yes,Direct 1-to-1 match with official CICIoT2023 CSV feature column.
+LLC,LLC,MinMaxScaler normalization on train split,Yes,Direct 1-to-1 match with official CICIoT2023 CSV feature column.
+Tot sum,Tot sum,MinMaxScaler normalization on train split,Yes,Direct 1-to-1 match with official CICIoT2023 CSV feature column.
+Min,Min,MinMaxScaler normalization on train split,Yes,Direct 1-to-1 match with official CICIoT2023 CSV feature column.
+Max,Max,MinMaxScaler normalization on train split,Yes,Direct 1-to-1 match with official CICIoT2023 CSV feature column.
+AVG,AVG,MinMaxScaler normalization on train split,Yes,Direct 1-to-1 match with official CICIoT2023 CSV feature column.
+Std,Std,MinMaxScaler normalization on train split,Yes,Direct 1-to-1 match with official CICIoT2023 CSV feature column.
+Tot size,Tot size,MinMaxScaler normalization on train split,Yes,Direct 1-to-1 match with official CICIoT2023 CSV feature column.
+IAT,IAT,MinMaxScaler normalization on train split,Yes,Direct 1-to-1 match with official CICIoT2023 CSV feature column.
+Number,Number,MinMaxScaler normalization on train split,Yes,Direct 1-to-1 match with official CICIoT2023 CSV feature column.
+Magnitue,Magnitue,MinMaxScaler normalization on train split,Yes,Direct match. Preserves original CICIoT2023 spelling typo.
+Radius,Radius,MinMaxScaler normalization on train split,Yes,Direct 1-to-1 match with official CICIoT2023 CSV feature column.
+Covariance,Covariance,MinMaxScaler normalization on train split,Yes,Direct 1-to-1 match with official CICIoT2023 CSV feature column.
+Variance,Variance,MinMaxScaler normalization on train split,Yes,Direct 1-to-1 match with official CICIoT2023 CSV feature column.
+Weight,Weight,MinMaxScaler normalization on train split,Yes,Direct 1-to-1 match with official CICIoT2023 CSV feature column.

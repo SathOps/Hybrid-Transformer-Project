@@ -1,0 +1,38 @@
+{
+  "dataset_total_samples": 20000,
+  "exact_duplicates": {
+    "within_train": {
+      "count": 0,
+      "percentage": 0.0
+    },
+    "within_validation": {
+      "count": 0,
+      "percentage": 0.0
+    },
+    "within_test": {
+      "count": 0,
+      "percentage": 0.0
+    },
+    "cross_train_validation": {
+      "unique_shared_hashes": 0,
+      "train_rows_in_val": 0
+    },
+    "cross_train_test": {
+      "unique_shared_hashes": 0,
+      "test_rows_in_train": 0
+    },
+    "cross_validation_test": {
+      "unique_shared_hashes": 0,
+      "test_rows_in_val": 0
+    },
+    "cross_all_three": {
+      "unique_shared_hashes": 0
+    }
+  },
+  "near_duplicate_sampled_analysis": {
+    "test_sample_size": 500,
+    "test_samples_with_near_match_in_train_l_inf_1e-4": 0,
+    "estimated_near_duplicate_rate": 0.0
+  },
+  "findings": "Zero exact or near-duplicates found across train, validation, and test splits. The samples are independently sampled from synthetic distributions."
+}

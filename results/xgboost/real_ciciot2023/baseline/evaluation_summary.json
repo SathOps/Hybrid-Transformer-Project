@@ -1,0 +1,214 @@
+{
+  "timestamp": "2026-09-12T14:08:55.158430",
+  "checkpoint_evaluated": "C:\\Users\\user\\OneDrive\\\u30c9\u30ad\u30e5\u30e1\u30f3\u30c8\\gitam\\vscode proj\\cyberattack detection\\checkpoints\\xgboost\\real_ciciot2023\\baseline\\model.json",
+  "test_dataset_dir": "C:\\Users\\user\\OneDrive\\\u30c9\u30ad\u30e5\u30e1\u30f3\u30c8\\gitam\\vscode proj\\cyberattack detection\\data\\processed\\prepared\\subsampled_train\\test",
+  "overall_metrics": {
+    "test_log_loss": 0.42033249139785767,
+    "test_accuracy": 0.7490945569377159,
+    "precision_macro": 0.8654034100922274,
+    "precision_weighted": 0.872807391765652,
+    "recall_macro": 0.694793447635307,
+    "recall_weighted": 0.7490945569377159,
+    "f1_macro": 0.7031525049343011,
+    "f1_weighted": 0.7746255739064395,
+    "roc_auc_macro": 0.9729640183742099,
+    "roc_auc_weighted": 0.9250825628042992,
+    "pr_auc_macro": 0.7636260990220161,
+    "pr_auc_weighted": 0.9148971829052862,
+    "total_test_samples": 5613274,
+    "num_classes": 7,
+    "inference_duration_seconds": 1.8597,
+    "ms_per_sample": 0.0003
+  },
+  "per_class_metrics": {
+    "Benign": {
+      "class_id": 0,
+      "precision": 0.9087950791763648,
+      "recall": 0.9884530624882375,
+      "f1_score": 0.9469518082099362,
+      "support": 164719,
+      "roc_auc_ovr": 0.9993974235058137,
+      "pr_auc_ovr": 0.9723884294717646
+    },
+    "BruteForce": {
+      "class_id": 1,
+      "precision": 0.9368600682593856,
+      "recall": 0.2801020408163265,
+      "f1_score": 0.4312647289866457,
+      "support": 1960,
+      "roc_auc_ovr": 0.99688707566207,
+      "pr_auc_ovr": 0.4637284663284939
+    },
+    "DDoS": {
+      "class_id": 2,
+      "precision": 0.9731652160148094,
+      "recall": 0.6821956202342233,
+      "f1_score": 0.8021079556695749,
+      "support": 4127344,
+      "roc_auc_ovr": 0.9229502856092047,
+      "pr_auc_ovr": 0.9714924208370197
+    },
+    "DoS": {
+      "class_id": 3,
+      "precision": 0.40944975326361155,
+      "recall": 0.9207795014575574,
+      "f1_score": 0.566839044238302,
+      "support": 985553,
+      "roc_auc_ovr": 0.8961693923729876,
+      "pr_auc_ovr": 0.645135065915929
+    },
+    "Mirai": {
+      "class_id": 4,
+      "precision": 0.9870199716216834,
+      "recall": 0.9989499731702703,
+      "f1_score": 0.9929491397950548,
+      "support": 259041,
+      "roc_auc_ovr": 0.9999978949128728,
+      "pr_auc_ovr": 0.9999563901668386
+    },
+    "Spoofing": {
+      "class_id": 5,
+      "precision": 0.9660970007005425,
+      "recall": 0.8127072883260696,
+      "f1_score": 0.8827885996710012,
+      "support": 72966,
+      "roc_auc_ovr": 0.9989184584414383,
+      "pr_auc_ovr": 0.9508939988617783
+    },
+    "Web-based": {
+      "class_id": 6,
+      "precision": 0.8764367816091954,
+      "recall": 0.1803666469544648,
+      "f1_score": 0.29916625796959295,
+      "support": 1691,
+      "roc_auc_ovr": 0.9964275981150815,
+      "pr_auc_ovr": 0.3417879215722883
+    }
+  },
+  "top_10_features_by_gain": [
+    {
+      "rank": 1,
+      "feature_name": "Weight",
+      "importance_gain": 15569.9052734375
+    },
+    {
+      "rank": 2,
+      "feature_name": "Number",
+      "importance_gain": 14572.52734375
+    },
+    {
+      "rank": 3,
+      "feature_name": "Protocol Type",
+      "importance_gain": 10812.25390625
+    },
+    {
+      "rank": 4,
+      "feature_name": "Tot size",
+      "importance_gain": 8699.666015625
+    },
+    {
+      "rank": 5,
+      "feature_name": "Tot sum",
+      "importance_gain": 8651.455078125
+    },
+    {
+      "rank": 6,
+      "feature_name": "AVG",
+      "importance_gain": 6756.35595703125
+    },
+    {
+      "rank": 7,
+      "feature_name": "Header_Length",
+      "importance_gain": 2756.981689453125
+    },
+    {
+      "rank": 8,
+      "feature_name": "ICMP",
+      "importance_gain": 2427.284423828125
+    },
+    {
+      "rank": 9,
+      "feature_name": "Min",
+      "importance_gain": 2373.259765625
+    },
+    {
+      "rank": 10,
+      "feature_name": "ack_flag_number",
+      "importance_gain": 1705.458984375
+    }
+  ],
+  "confusion_matrix": [
+    [
+      162817,
+      33,
+      0,
+      0,
+      0,
+      1834,
+      35
+    ],
+    [
+      1366,
+      549,
+      0,
+      0,
+      0,
+      45,
+      0
+    ],
+    [
+      81,
+      0,
+      2815656,
+      1308663,
+      2937,
+      6,
+      1
+    ],
+    [
+      19,
+      0,
+      77568,
+      907477,
+      466,
+      23,
+      0
+    ],
+    [
+      1,
+      0,
+      73,
+      193,
+      258769,
+      5,
+      0
+    ],
+    [
+      13655,
+      4,
+      0,
+      0,
+      0,
+      59300,
+      7
+    ],
+    [
+      1218,
+      0,
+      0,
+      0,
+      0,
+      168,
+      305
+    ]
+  ],
+  "class_names": [
+    "Benign",
+    "BruteForce",
+    "DDoS",
+    "DoS",
+    "Mirai",
+    "Spoofing",
+    "Web-based"
+  ]
+}

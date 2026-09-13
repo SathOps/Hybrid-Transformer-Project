@@ -1,0 +1,4 @@
+trial_id,val_macro_f1,val_accuracy,duration_seconds,learning_rate,batch_size
+1,0.513792,0.730215,64.09,5e-05,1024
+2,0.613216,0.72216,74.18,0.0001,1024
+3,0.501583,0.693595,76.1,2e-05,512

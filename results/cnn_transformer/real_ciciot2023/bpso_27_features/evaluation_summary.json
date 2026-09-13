@@ -1,0 +1,174 @@
+{
+  "timestamp": "2026-09-12T15:40:09.878021",
+  "dataset_type": "REAL CICIoT2023",
+  "active_classes_count": 7,
+  "training_partition": "SUBSAMPLED TRAINING PARTITION",
+  "validation_partition": "NATURAL VALIDATION SET",
+  "test_partition": "NATURAL HOLD-OUT TEST SET",
+  "synthetic_data_used": false,
+  "checkpoint_evaluated": "C:\\Users\\user\\OneDrive\\\u30c9\u30ad\u30e5\u30e1\u30f3\u30c8\\gitam\\vscode proj\\cyberattack detection\\checkpoints\\cnn_transformer\\real_ciciot2023\\bpso_27_features\\best_model.keras",
+  "test_dataset_dir": "C:\\Users\\user\\OneDrive\\\u30c9\u30ad\u30e5\u30e1\u30f3\u30c8\\gitam\\vscode proj\\cyberattack detection\\data\\processed\\prepared\\subsampled_train\\test",
+  "overall_metrics": {
+    "dataset_type": "REAL CICIoT2023",
+    "active_classes_count": 7,
+    "training_partition": "SUBSAMPLED TRAINING PARTITION",
+    "validation_partition": "NATURAL VALIDATION SET",
+    "test_partition": "NATURAL HOLD-OUT TEST SET",
+    "synthetic_data_used": false,
+    "test_loss": 1.6029475927352905,
+    "test_accuracy": 0.5379726697823766,
+    "precision_macro": 0.269088376370045,
+    "precision_weighted": 0.6687274544638707,
+    "recall_macro": 0.30951112593200963,
+    "recall_weighted": 0.5379726697823766,
+    "f1_macro": 0.26135394945846047,
+    "f1_weighted": 0.5903459798760986,
+    "roc_auc_macro": 0.6567329933398937,
+    "roc_auc_weighted": 0.6403288133261533,
+    "pr_auc_macro": 0.30433684891747376,
+    "pr_auc_weighted": 0.7166047433227776,
+    "total_test_samples": 5613274,
+    "num_classes": 7,
+    "inference_duration_seconds": 262.4756,
+    "ms_per_sample": 0.0468
+  },
+  "per_class_metrics": {
+    "Benign": {
+      "class_id": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1_score": 0.0,
+      "support": 164719,
+      "roc_auc_ovr": 0.24267786755262694,
+      "pr_auc_ovr": 0.017748981622060057
+    },
+    "BruteForce": {
+      "class_id": 1,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1_score": 0.0,
+      "support": 1960,
+      "roc_auc_ovr": 0.682179761718731,
+      "pr_auc_ovr": 0.006781587823826745
+    },
+    "DDoS": {
+      "class_id": 2,
+      "precision": 0.8101338056767172,
+      "recall": 0.6119182215003159,
+      "f1_score": 0.6972116744998171,
+      "support": 4127344,
+      "roc_auc_ovr": 0.6513465103546597,
+      "pr_auc_ovr": 0.8636394912159714
+    },
+    "DoS": {
+      "class_id": 3,
+      "precision": 0.19015497803495646,
+      "recall": 0.2406395191329132,
+      "f1_score": 0.21243912248596133,
+      "support": 985553,
+      "roc_auc_ovr": 0.5576118492400346,
+      "pr_auc_ovr": 0.20872616321031623
+    },
+    "Mirai": {
+      "class_id": 4,
+      "precision": 0.8501339578383336,
+      "recall": 0.8660443713543415,
+      "f1_score": 0.8580154131528119,
+      "support": 259041,
+      "roc_auc_ovr": 0.9903926100822606,
+      "pr_auc_ovr": 0.9348108528275609
+    },
+    "Spoofing": {
+      "class_id": 5,
+      "precision": 0.03319589304030792,
+      "recall": 0.4479757695364964,
+      "f1_score": 0.061811436070633004,
+      "support": 72966,
+      "roc_auc_ovr": 0.7870951273126879,
+      "pr_auc_ovr": 0.0981096071488122
+    },
+    "Web-based": {
+      "class_id": 6,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1_score": 0.0,
+      "support": 1691,
+      "roc_auc_ovr": 0.6858272271182544,
+      "pr_auc_ovr": 0.0005412585737687325
+    }
+  },
+  "confusion_matrix": [
+    [
+      0,
+      0,
+      80520,
+      51365,
+      4,
+      32830,
+      0
+    ],
+    [
+      0,
+      0,
+      990,
+      333,
+      0,
+      637,
+      0
+    ],
+    [
+      0,
+      0,
+      2525597,
+      949431,
+      4935,
+      647381,
+      0
+    ],
+    [
+      0,
+      0,
+      453559,
+      237163,
+      34553,
+      260278,
+      0
+    ],
+    [
+      0,
+      0,
+      23820,
+      997,
+      224341,
+      9883,
+      0
+    ],
+    [
+      0,
+      0,
+      32509,
+      7714,
+      56,
+      32687,
+      0
+    ],
+    [
+      0,
+      0,
+      511,
+      206,
+      0,
+      974,
+      0
+    ]
+  ],
+  "class_names": [
+    "Benign",
+    "BruteForce",
+    "DDoS",
+    "DoS",
+    "Mirai",
+    "Spoofing",
+    "Web-based"
+  ]
+}

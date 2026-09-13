@@ -1,0 +1,38 @@
+Feature,Data Type,Sample Count,Null Count,Inf Count,Min,Max,Mean,Std,Is Constant?,Suspicious?,Notes
+Header_Length,float64,241268,0,0,0.0,60.0,16.521782,11.13086,No,No,Standard network flow feature.
+Protocol Type,float64,241268,0,0,0.0,47.0,11.30171,11.736973,No,No,Standard network flow feature.
+Rate,float64,241268,0,7,4e-05,inf,inf,nan,No,Yes,Contains 0 NaNs and 7 Infs in sample.
+fin_flag_number,float64,241268,0,0,0.0,1.0,0.050518,0.200794,No,No,Standard network flow feature.
+syn_flag_number,float64,241268,0,0,0.0,1.0,0.154501,0.325627,No,No,Standard network flow feature.
+rst_flag_number,float64,241268,0,0,0.0,1.0,0.076699,0.228911,No,No,Standard network flow feature.
+psh_flag_number,float64,241268,0,0,0.0,1.0,0.109231,0.237444,No,No,Standard network flow feature.
+ack_flag_number,float64,241268,0,0,0.0,1.0,0.30721,0.394655,No,No,Standard network flow feature.
+ece_flag_number,float64,241268,0,0,0.0,0.7,0.000141,0.004708,No,No,Standard network flow feature.
+cwr_flag_number,float64,241268,0,0,0.0,0.6,8.2e-05,0.003212,No,No,Standard network flow feature.
+ack_count,float64,241268,0,0,0.0,100.0,17.921751,31.641171,No,No,Standard network flow feature.
+syn_count,float64,241268,0,0,0.0,100.0,14.978012,32.631218,No,No,Standard network flow feature.
+fin_count,float64,241268,0,0,0.0,100.0,4.728464,19.99334,No,No,Standard network flow feature.
+rst_count,float64,241268,0,0,0.0,100.0,7.593734,22.88033,No,No,Standard network flow feature.
+HTTP,float64,241268,0,0,0.0,1.0,0.104787,0.285423,No,No,Standard network flow feature.
+HTTPS,float64,241268,0,0,0.0,1.0,0.133113,0.29129,No,No,Standard network flow feature.
+DNS,float64,241268,0,0,0.0,1.0,0.009549,0.044306,No,No,Standard network flow feature.
+Telnet,float64,241268,0,0,0.0,0.02,4e-06,0.000213,No,No,Standard network flow feature.
+SMTP,float64,241268,0,0,0.0,0.02,4e-06,0.000213,No,No,Standard network flow feature.
+SSH,float64,241268,0,0,0.0,1.0,0.006896,0.068907,No,No,Standard network flow feature.
+IRC,float64,241268,0,0,0.0,0.1,1.6e-05,0.000914,No,No,Standard network flow feature.
+TCP,float64,241268,0,0,0.0,1.0,0.580755,0.451211,No,No,Standard network flow feature.
+UDP,float64,241268,0,0,0.0,1.0,0.208022,0.356894,No,No,Standard network flow feature.
+DHCP,float64,241268,0,0,0.0,0.6,0.0007,0.011407,No,No,Standard network flow feature.
+ARP,float64,241268,0,0,0.0,0.87,0.010609,0.038938,No,No,Standard network flow feature.
+ICMP,float64,241268,0,0,0.0,1.0,0.084067,0.267633,No,No,Standard network flow feature.
+IPv,float64,241268,0,0,0.13,1.0,0.989391,0.038938,No,No,Standard network flow feature.
+LLC,float64,241268,0,0,0.13,1.0,0.989391,0.038938,No,No,Standard network flow feature.
+Tot sum,float64,241268,0,0,60.0,265392.0,25352.434305,32013.668801,No,No,Standard network flow feature.
+Min,float64,241268,0,0,42.0,2962.0,118.180484,206.190379,No,No,Standard network flow feature.
+Max,float64,241268,0,0,52.0,26130.0,745.060924,1124.947422,No,No,Standard network flow feature.
+AVG,float64,241268,0,0,46.6,6581.4,343.391251,390.447469,No,No,Standard network flow feature.
+Std,float64,241268,6,0,0.0,7485.542201,198.276597,320.290603,No,Yes,Contains 6 NaNs and 0 Infs in sample.
+Tot size,float64,241268,0,0,46.6,6581.4,343.391251,390.447469,No,No,Standard network flow feature.
+IAT,float64,241268,0,0,0.0,24767.995859,0.109606,50.431968,No,No,Standard network flow feature.
+Number,float64,241268,0,0,1.0,100.0,80.751849,36.861694,No,No,Standard network flow feature.
+Variance,float64,241268,6,0,0.0,56033342.044444,141899.253667,487331.165969,No,Yes,Contains 6 NaNs and 0 Infs in sample.

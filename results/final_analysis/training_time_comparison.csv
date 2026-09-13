@@ -1,0 +1,7 @@
+experiment_id,model_name,feature_count,epochs_completed,best_epoch,training_duration_seconds,avg_epoch_duration_seconds,inference_duration_seconds,ms_per_sample
+1,CNN-Transformer Baseline,46,7,2,1618.91,231.27,201.714,0.0359
+2,CNN-Transformer Class-Weighted,46,7,2,1619.58,231.37,207.8061,0.037
+3,MLP Baseline,46,12,7,179.55,14.96,19.666,0.0035
+4,XGBoost Baseline,46,1,1,50.68,50.68,1.8597,0.0003
+5,XGBoost + BPSO,27,1,1,44.58,44.58,1.7807,0.000317
+6,Proposed CNN-Transformer + BPSO,27,14,9,2933.4,209.53,262.4756,0.0468

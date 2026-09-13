@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 
-ALLOWED_TARGET_CLASSES = (
+import numpy as np
+
+CANONICAL_TARGET_CLASSES = (
     "Benign",
     "BruteForce",
     "DDoS",
@@ -14,16 +16,56 @@ ALLOWED_TARGET_CLASSES = (
     "Web-based",
 )
 
+ACTIVE_TARGET_CLASSES = (
+    "Benign",
+    "BruteForce",
+    "DDoS",
+    "DoS",
+    "Mirai",
+    "Spoofing",
+    "Web-based",
+)
+
+ALLOWED_TARGET_CLASSES = CANONICAL_TARGET_CLASSES
+
+NUM_CANONICAL_CLASSES = len(CANONICAL_TARGET_CLASSES)  # 8
+NUM_ACTIVE_CLASSES = len(ACTIVE_TARGET_CLASSES)        # 7
+
+CANONICAL_ID_TO_ACTIVE_INDEX = {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 6: 5, 7: 6}
+ACTIVE_INDEX_TO_CANONICAL_ID = {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 6, 6: 7}
+
+_CANONICAL_TO_ACTIVE_LUT = np.array([0, 1, 2, 3, 4, -1, 5, 6], dtype=np.int64)
+_ACTIVE_TO_CANONICAL_LUT = np.array([0, 1, 2, 3, 4, 6, 7], dtype=np.int64)
+
+
+def canonical_to_active_labels(y: np.ndarray) -> np.ndarray:
+    """Map canonical label IDs (0,1,2,3,4,6,7) to contiguous active model output targets (0..6)."""
+    y_arr = np.asarray(y, dtype=np.int64)
+    mapped = _CANONICAL_TO_ACTIVE_LUT[y_arr]
+    if (mapped == -1).any():
+        raise ValueError("Input labels contain inactive canonical label ID 5 (Recon).")
+    return mapped
+
+
+def active_to_canonical_labels(y: np.ndarray) -> np.ndarray:
+    """Map active model output prediction targets (0..6) back to canonical label IDs (0,1,2,3,4,6,7)."""
+    y_arr = np.asarray(y, dtype=np.int64)
+    return _ACTIVE_TO_CANONICAL_LUT[y_arr]
+
+
 
 SOURCE_TO_TARGET = {
     "BenignTraffic": "Benign",
+    "Benign_Final": "Benign",
     "BrowserHijacking": "Web-based",
     "CommandInjection": "Web-based",
     "DDoS-ACK_Fragmentation": "DDoS",
     "DDoS-HTTP_Flood": "DDoS",
     "DDoS-ICMP_Flood": "DDoS",
     "DDoS-ICMP_Fragmentation": "DDoS",
+    "DDoS-PSHACK_FLOOD": "DDoS",
     "DDoS-PSHACK_Flood": "DDoS",
+    "DDoS-RSTFINFLOOD": "DDoS",
     "DDoS-RSTFINFlood": "DDoS",
     "DDoS-SYN_Flood": "DDoS",
     "DDoS-SlowLoris": "DDoS",
@@ -64,13 +106,16 @@ UNRESOLVED_SOURCE_LABELS = frozenset(
 EXPECTED_SOURCE_LABELS = (
     "Backdoor_Malware",
     "BenignTraffic",
+    "Benign_Final",
     "BrowserHijacking",
     "CommandInjection",
     "DDoS-ACK_Fragmentation",
     "DDoS-HTTP_Flood",
     "DDoS-ICMP_Flood",
     "DDoS-ICMP_Fragmentation",
+    "DDoS-PSHACK_FLOOD",
     "DDoS-PSHACK_Flood",
+    "DDoS-RSTFINFLOOD",
     "DDoS-RSTFINFlood",
     "DDoS-SYN_Flood",
     "DDoS-SlowLoris",

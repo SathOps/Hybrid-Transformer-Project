@@ -1,0 +1,47 @@
+Feature,Source,Legitimate network feature?,Potential leakage?,Reason
+flow_duration,CICIoT2023 Feature Schema,Yes,No,"Legitimate standard CICIoT2023 flow statistical feature. However, in current prepared dataset, synthetic generator artificially shifted feature values by loc = 10 + 5*class_id."
+Header_Length,CICIoT2023 Feature Schema,Yes,No,"Legitimate standard CICIoT2023 flow statistical feature. However, in current prepared dataset, synthetic generator artificially shifted feature values by loc = 10 + 5*class_id."
+Protocol Type,CICIoT2023 Feature Schema,Yes,No,"Legitimate standard CICIoT2023 flow statistical feature. However, in current prepared dataset, synthetic generator artificially shifted feature values by loc = 10 + 5*class_id."
+Duration,CICIoT2023 Feature Schema,Yes,No,"Legitimate standard CICIoT2023 flow statistical feature. However, in current prepared dataset, synthetic generator artificially shifted feature values by loc = 10 + 5*class_id."
+Rate,CICIoT2023 Feature Schema,Yes,No,"Legitimate standard CICIoT2023 flow statistical feature. However, in current prepared dataset, synthetic generator artificially shifted feature values by loc = 10 + 5*class_id."
+Srate,CICIoT2023 Feature Schema,Yes,No,"Legitimate standard CICIoT2023 flow statistical feature. However, in current prepared dataset, synthetic generator artificially shifted feature values by loc = 10 + 5*class_id."
+Drate,CICIoT2023 Feature Schema,Yes,No,"Legitimate standard CICIoT2023 flow statistical feature. However, in current prepared dataset, synthetic generator artificially shifted feature values by loc = 10 + 5*class_id."
+fin_flag_number,CICIoT2023 Feature Schema,Yes,No,TCP flag / count metric. Legitimate TCP header statistic in network traffic.
+syn_flag_number,CICIoT2023 Feature Schema,Yes,No,TCP flag / count metric. Legitimate TCP header statistic in network traffic.
+rst_flag_number,CICIoT2023 Feature Schema,Yes,No,TCP flag / count metric. Legitimate TCP header statistic in network traffic.
+psh_flag_number,CICIoT2023 Feature Schema,Yes,No,TCP flag / count metric. Legitimate TCP header statistic in network traffic.
+ack_flag_number,CICIoT2023 Feature Schema,Yes,No,TCP flag / count metric. Legitimate TCP header statistic in network traffic.
+ece_flag_number,CICIoT2023 Feature Schema,Yes,No,TCP flag / count metric. Legitimate TCP header statistic in network traffic.
+cwr_flag_number,CICIoT2023 Feature Schema,Yes,No,TCP flag / count metric. Legitimate TCP header statistic in network traffic.
+ack_count,CICIoT2023 Feature Schema,Yes,No,TCP flag / count metric. Legitimate TCP header statistic in network traffic.
+syn_count,CICIoT2023 Feature Schema,Yes,No,TCP flag / count metric. Legitimate TCP header statistic in network traffic.
+fin_count,CICIoT2023 Feature Schema,Yes,No,TCP flag / count metric. Legitimate TCP header statistic in network traffic.
+urg_count,CICIoT2023 Feature Schema,Yes,No,TCP flag / count metric. Legitimate TCP header statistic in network traffic.
+rst_count,CICIoT2023 Feature Schema,Yes,No,TCP flag / count metric. Legitimate TCP header statistic in network traffic.
+HTTP,CICIoT2023 Feature Schema,Yes,No,"Protocol flag / application binary indicator. Legitimate network protocol feature in raw CICIoT2023, but in current synthetic data it exhibits artificial Gaussian shift per class."
+HTTPS,CICIoT2023 Feature Schema,Yes,No,"Protocol flag / application binary indicator. Legitimate network protocol feature in raw CICIoT2023, but in current synthetic data it exhibits artificial Gaussian shift per class."
+DNS,CICIoT2023 Feature Schema,Yes,No,"Protocol flag / application binary indicator. Legitimate network protocol feature in raw CICIoT2023, but in current synthetic data it exhibits artificial Gaussian shift per class."
+Telnet,CICIoT2023 Feature Schema,Yes,No,"Protocol flag / application binary indicator. Legitimate network protocol feature in raw CICIoT2023, but in current synthetic data it exhibits artificial Gaussian shift per class."
+SMTP,CICIoT2023 Feature Schema,Yes,No,"Protocol flag / application binary indicator. Legitimate network protocol feature in raw CICIoT2023, but in current synthetic data it exhibits artificial Gaussian shift per class."
+SSH,CICIoT2023 Feature Schema,Yes,No,"Protocol flag / application binary indicator. Legitimate network protocol feature in raw CICIoT2023, but in current synthetic data it exhibits artificial Gaussian shift per class."
+IRC,CICIoT2023 Feature Schema,Yes,No,"Protocol flag / application binary indicator. Legitimate network protocol feature in raw CICIoT2023, but in current synthetic data it exhibits artificial Gaussian shift per class."
+TCP,CICIoT2023 Feature Schema,Yes,No,"Protocol flag / application binary indicator. Legitimate network protocol feature in raw CICIoT2023, but in current synthetic data it exhibits artificial Gaussian shift per class."
+UDP,CICIoT2023 Feature Schema,Yes,No,"Protocol flag / application binary indicator. Legitimate network protocol feature in raw CICIoT2023, but in current synthetic data it exhibits artificial Gaussian shift per class."
+DHCP,CICIoT2023 Feature Schema,Yes,No,"Protocol flag / application binary indicator. Legitimate network protocol feature in raw CICIoT2023, but in current synthetic data it exhibits artificial Gaussian shift per class."
+ARP,CICIoT2023 Feature Schema,Yes,No,"Protocol flag / application binary indicator. Legitimate network protocol feature in raw CICIoT2023, but in current synthetic data it exhibits artificial Gaussian shift per class."
+ICMP,CICIoT2023 Feature Schema,Yes,No,"Protocol flag / application binary indicator. Legitimate network protocol feature in raw CICIoT2023, but in current synthetic data it exhibits artificial Gaussian shift per class."
+IPv,CICIoT2023 Feature Schema,Yes,No,"Protocol flag / application binary indicator. Legitimate network protocol feature in raw CICIoT2023, but in current synthetic data it exhibits artificial Gaussian shift per class."
+LLC,CICIoT2023 Feature Schema,Yes,No,"Protocol flag / application binary indicator. Legitimate network protocol feature in raw CICIoT2023, but in current synthetic data it exhibits artificial Gaussian shift per class."
+Tot sum,CICIoT2023 Feature Schema,Yes,No,Packet size / aggregate statistical measure. Standard flow summary statistic.
+Min,CICIoT2023 Feature Schema,Yes,No,Packet size / aggregate statistical measure. Standard flow summary statistic.
+Max,CICIoT2023 Feature Schema,Yes,No,Packet size / aggregate statistical measure. Standard flow summary statistic.
+AVG,CICIoT2023 Feature Schema,Yes,No,Packet size / aggregate statistical measure. Standard flow summary statistic.
+Std,CICIoT2023 Feature Schema,Yes,No,Packet size / aggregate statistical measure. Standard flow summary statistic.
+Tot size,CICIoT2023 Feature Schema,Yes,No,Packet size / aggregate statistical measure. Standard flow summary statistic.
+IAT,CICIoT2023 Feature Schema,Yes,No,Packet size / aggregate statistical measure. Standard flow summary statistic.
+Number,CICIoT2023 Feature Schema,Yes,No,Packet size / aggregate statistical measure. Standard flow summary statistic.
+Magnitue,CICIoT2023 Feature Schema,Yes,No,Packet size / aggregate statistical measure. Standard flow summary statistic.
+Radius,CICIoT2023 Feature Schema,Yes,No,Packet size / aggregate statistical measure. Standard flow summary statistic.
+Covariance,CICIoT2023 Feature Schema,Yes,No,Packet size / aggregate statistical measure. Standard flow summary statistic.
+Variance,CICIoT2023 Feature Schema,Yes,No,Packet size / aggregate statistical measure. Standard flow summary statistic.
+Weight,CICIoT2023 Feature Schema,Yes,No,Packet size / aggregate statistical measure. Standard flow summary statistic.

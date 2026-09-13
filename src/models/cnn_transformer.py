@@ -12,17 +12,10 @@ from .transformer import DEFAULT_INPUT_SHAPE as DEFAULT_TRANSFORMER_INPUT_SHAPE
 from .transformer import build_transformer_encoder
 
 
-CLASS_NAMES = (
-    "Benign",
-    "BruteForce",
-    "DDoS",
-    "DoS",
-    "Mirai",
-    "Recon",
-    "Spoofing",
-    "Web-based",
-)
-DEFAULT_NUM_CLASSES = len(CLASS_NAMES)
+from src.preprocessing.class_mapping import ACTIVE_TARGET_CLASSES, NUM_ACTIVE_CLASSES
+
+CLASS_NAMES = ACTIVE_TARGET_CLASSES
+DEFAULT_NUM_CLASSES = NUM_ACTIVE_CLASSES
 DEFAULT_AGGREGATION = "global_average"
 
 
@@ -41,18 +34,18 @@ def build_model(
     -> reshape bridge -> ``(None, 8, 8)``
     -> Transformer encoder -> ``(None, 8, 8)``
     -> GlobalAveragePooling1D -> ``(None, 8)``
-    -> Dense(8) -> Softmax -> ``(None, 8)``.
+    -> Dense(7) -> Softmax -> ``(None, 7)``.
     """
     if num_classes != DEFAULT_NUM_CLASSES:
         raise ValueError(
-            f"This project classifier requires {DEFAULT_NUM_CLASSES} target classes"
+            f"This project classifier requires {DEFAULT_NUM_CLASSES} active target classes"
         )
     if aggregation != DEFAULT_AGGREGATION:
         raise ValueError(
             "The documented classifier aggregation is 'global_average'"
         )
-    if tuple(input_shape) != DEFAULT_INPUT_SHAPE:
-        raise ValueError("The CNN-Transformer integration requires input_shape=(46, 1)")
+    if len(input_shape) != 2 or input_shape[1] != 1:
+        raise ValueError("The CNN-Transformer integration requires input_shape=(num_features, 1)")
 
     inputs = keras.Input(shape=tuple(input_shape), name="traffic_features")
     cnn = build_cnn_feature_extractor(

@@ -1,0 +1,17 @@
+{
+  "num_features": 46,
+  "num_particles": 20,
+  "max_iterations": 20,
+  "inertia_weight_w": 0.7,
+  "cognitive_c1": 1.5,
+  "social_c2": 1.5,
+  "v_bounds": [
+    -6.0,
+    6.0
+  ],
+  "random_seed": 42,
+  "fitness_subset_train_size": 200000,
+  "fitness_subset_val_size": 200000,
+  "fitness_model": "XGBoost (hist, n_estimators=30, max_depth=5)",
+  "fitness_primary_metric": "Validation Macro F1"
+}

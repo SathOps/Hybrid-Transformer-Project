@@ -283,7 +283,7 @@ def test_dataset_streaming_and_tf_dataset(tmp_path):
     )
 
     class_names = load_class_names(output_dir)
-    assert len(class_names) == 8
+    assert len(class_names) == 7
     assert class_names[0] == "Benign"
 
     batches = list(iter_batches(output_dir / "train", batch_size=4))
